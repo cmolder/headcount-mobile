@@ -1,11 +1,15 @@
 import React from 'react';
-import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, TouchableOpacity, StyleSheet, View } from 'react-native';
 
 const PresentButton = (props) => {
     return(
-        <TouchableOpacity style={styles.button}>
-            <Text style={styles.text}>Mark as present</Text>
-        </TouchableOpacity>
+        <View style={styles.button}>
+            <TouchableOpacity onPress={() => {alert('Stop');}}>      
+                <Text style={styles.text}>Mark as present</Text>
+            </TouchableOpacity>            
+	    </View>
+ 
+     
     )
 }
 
@@ -17,12 +21,12 @@ const styles = StyleSheet.create({
         height: 60,
 
         borderRadius: 10,
-        backgroundColor: 'pink',
+        backgroundColor: '#ffcc33',
         alignItems: 'center',
         justifyContent: 'center'
     },
     text: {
-        color: '#f3f3f3',
+        color: '#000000',
         fontSize: 28,
         fontWeight: '900'
     }
