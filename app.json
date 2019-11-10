@@ -27,7 +27,7 @@
       "supportsTablet": true
     },
     "android": {
-      "permisions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATIONS"]
+      "permissions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATIONS"]
     }
   }
 }

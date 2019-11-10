@@ -3,13 +3,10 @@ import { StyleSheet, Platform, StatusBar, SafeAreaView, View, TouchableOpacity }
 import Header from './components/Header';
 import CodeInput from './components/CodeInput';
 import PresentButton from './components/PresentButton';
-import Location from './components/Location';
+import LocationButton from './components/LocationButton';
 
-export default class App extends Component {
+const App = () => {
 
-	render(){
-
-	
   	return (
    	<Fragment>
 
@@ -23,14 +20,13 @@ export default class App extends Component {
 			<Header text="Bee Here" />
 			<CodeInput />
 			<View style={{height: '100%', flex: 1}}/>
-			<Location />
+			<LocationButton />
 			<View style={{height: '100%', flex: 1}}/>
 			<PresentButton />
 		</SafeAreaView>
    
     </Fragment>
   );
-}
 }
 
 const styles = StyleSheet.create({
@@ -43,4 +39,6 @@ const styles = StyleSheet.create({
 	  flex: 1,
 	  backgroundColor: '#000000'
 	}
-  });
+});
+
+export default App;
