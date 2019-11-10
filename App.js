@@ -7,26 +7,37 @@ import LocationButton from './components/LocationButton';
 
 const App = () => {
 
+	let code = '00000';
+
+	const onCodeInputChange = (value) => {
+		code = value;
+		console.log(code);
+	}
+
+	const onPresentPress = () => {
+		alert("You have been marked present in class " + code);
+	}
+
   	return (
-   	<Fragment>
+		<Fragment>
 
-    	{/* Notch/top region for iOS, otherwise size 0 */}
-      		<SafeAreaView style={styles.notch}>
-        	<StatusBar barStyle="light-content"/>
-      	</SafeAreaView>
+			{/* Notch/top region for iOS, otherwise size 0 */}
+				<SafeAreaView style={styles.notch}>
+				<StatusBar barStyle="light-content"/>
+			</SafeAreaView>
 
-       	{/* Remainder of app view, including home bar for iOS */}
-		<SafeAreaView style={styles.bottom}>
-			<Header text="Bee Here" />
-			<CodeInput />
-			<View style={{height: '100%', flex: 1}}/>
-			<LocationButton />
-			<View style={{height: '100%', flex: 1}}/>
-			<PresentButton />
-		</SafeAreaView>
-   
-    </Fragment>
-  );
+			{/* Remainder of app view, including home bar for iOS */}
+			<SafeAreaView style={styles.bottom}>
+				<Header text="Bee Here" />
+				<CodeInput onChange={(value) => onCodeInputChange(value)}/>
+				<View style={{height: '100%', flex: 1}}/>
+				<LocationButton />
+				<View style={{height: '100%', flex: 1}}/>
+				<PresentButton onPress={() => onPresentPress()}/>
+			</SafeAreaView>
+	
+		</Fragment>
+	);
 }
 
 const styles = StyleSheet.create({

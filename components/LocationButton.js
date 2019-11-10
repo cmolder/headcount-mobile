@@ -26,8 +26,8 @@ const LocationButton = () => {
 
 const styles = StyleSheet.create({
     container: {
-            alignItems: 'center',
-            justifyContent: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     text: {
         color: '#ffcc33',
@@ -35,6 +35,5 @@ const styles = StyleSheet.create({
         fontWeight: '900'
     }
 });
-
 
 export default LocationButton;

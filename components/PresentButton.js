@@ -4,7 +4,7 @@ import { Text, TouchableOpacity, StyleSheet, View } from 'react-native';
 const PresentButton = (props) => {
     return(
         <View style={styles.button}>
-            <TouchableOpacity onPress={() => {alert('Stop');}}>      
+            <TouchableOpacity onPress={() => props.onPress()}>      
                 <Text style={styles.text}>Mark as present</Text>
             </TouchableOpacity>            
 	    </View>

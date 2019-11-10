@@ -3,11 +3,16 @@ import { StyleSheet, View, TextInput, Text } from 'react-native';
 
 
 const CodeInput = (props) => {
+
+
     return(
         <View style={styles.container}>
             <Text style={styles.text}>Enter class code:</Text>
-            <TextInput style={styles.input} maxLength={5} placeholderTextColor='#ffcc33' 
-                placeholder='00000'></TextInput>
+            <TextInput style={styles.input} 
+                       maxLength={5} 
+                       placeholderTextColor='#ffcc33' 
+                       placeholder='00000'
+                       onChangeText={text => props.onChange(text)}></TextInput>
         </View>
     );
 }
