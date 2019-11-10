@@ -6,7 +6,8 @@ const CodeInput = (props) => {
     return(
         <View style={styles.container}>
             <Text style={styles.text}>Enter class code:</Text>
-            <TextInput style={styles.input} placeholder='000000'></TextInput>
+            <TextInput style={styles.input} maxLength={5} placeholderTextColor='#ffcc33' 
+                placeholder='00000'></TextInput>
         </View>
     );
 }
@@ -17,11 +18,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     text: {
-        color: '#f3f3f3',
+        color: '#ffcc33',
         fontSize: 24,
         fontWeight: '900'
     }, 
     input: {
+        color: '#ffcc33',
         fontSize: 40,
         textAlign: 'center',
         marginTop: 10,
@@ -29,7 +31,7 @@ const styles = StyleSheet.create({
         height: 80,
         borderWidth: 2,
         borderRadius: 8,
-        borderColor: '#888'
+        borderColor: '#ffcc33'
     }
 });
 
