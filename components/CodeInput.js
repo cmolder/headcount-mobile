@@ -6,12 +6,14 @@ const CodeInput = (props) => {
 
 
     return(
+
+        // TODO force to be all caps
         <View style={styles.container}>
             <Text style={styles.text}>Enter class code:</Text>
             <TextInput style={styles.input} 
-                       maxLength={5} 
+                       maxLength={6} 
                        placeholderTextColor='#ffcc33' 
-                       placeholder='00000'
+                       placeholder='000000'
                        onChangeText={text => props.onChange(text)}></TextInput>
         </View>
     );

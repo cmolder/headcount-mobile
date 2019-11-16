@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Platform, StatusBar, SafeAreaView, View, TouchableOpacity } from 'react-native';
 import Header from './components/Header';
 import CodeInput from './components/CodeInput';
@@ -7,19 +7,47 @@ import LocationButton from './components/LocationButton';
 
 const App = () => {
 
-	let code = '00000';
+	const [code, setCode] = useState('000000');
+	const [classroom, setClassroom] = useState(null);
+
+	useEffect(() => {
+		console.log("Code changed!", code);
+
+		
+
+	}, [code]);
 
 	const onCodeInputChange = (value) => {
-		code = value;
-		console.log(code);
+		setCode(value);
+	}
+
+	async function getClassroomFromCode() {
+		let djangoId = code; // TODO rewrite this to search by classcode
+
+
+		try {
+			const link = 'https://127.0.0.1:8000/api/classroom'; // TODO host this on a server
+			console.log(link);
+			
+			const res = await fetch(link);
+			const foundClassroom = await res.json();
+			console.log(foundClassroom);
+			// setClassroom(foundClassroom);
+
+			// alert(foundClassroom['department'] + " " + foundClassroom['number']);
+
+		} catch (e) {
+			console.log("Exception!", e);
+		}
 	}
 
 	const onPresentPress = () => {
-		alert("You have been marked present in class " + code);
+		getClassroomFromCode();
 	}
 
+
   	return (
-		<Fragment>
+		<>
 
 			{/* Notch/top region for iOS, otherwise size 0 */}
 				<SafeAreaView style={styles.notch}>
@@ -36,7 +64,7 @@ const App = () => {
 				<PresentButton onPress={() => onPresentPress()}/>
 			</SafeAreaView>
 	
-		</Fragment>
+		</>
 	);
 }
 
