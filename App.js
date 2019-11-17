@@ -26,15 +26,14 @@ const App = () => {
 
 
 		try {
-			const link = 'https://127.0.0.1:8000/api/classroom'; // TODO host this on a server
+			const link = 'https://headcount-server.herokuapp.com/api/classroom/' + djangoId; // TODO host this on a server
 			console.log(link);
 			
 			const res = await fetch(link);
 			const foundClassroom = await res.json();
-			console.log(foundClassroom);
-			// setClassroom(foundClassroom);
-
-			// alert(foundClassroom['department'] + " " + foundClassroom['number']);
+			
+			setClassroom(foundClassroom);
+			alert(foundClassroom['department'] + " " + foundClassroom['number'] + "\n" + foundClassroom['class_code']);
 
 		} catch (e) {
 			console.log("Exception!", e);
