@@ -10,30 +10,22 @@ const App = () => {
 	const [code, setCode] = useState('000000');
 	const [classroom, setClassroom] = useState(null);
 
-	useEffect(() => {
-		console.log("Code changed!", code);
-
-		
-
-	}, [code]);
-
 	const onCodeInputChange = (value) => {
 		setCode(value);
 	}
 
 	async function getClassroomFromCode() {
-		let djangoId = code; // TODO rewrite this to search by classcode
-
 
 		try {
-			const link = 'https://headcount-server.herokuapp.com/api/classroom/' + djangoId; // TODO host this on a server
-			console.log(link);
+			console.log(code)
+			const link = 'https://headcount-server.herokuapp.com/api/classroom?class_code=' + code;
+			const queryResult = await fetch(link);
+			const queryJson = await queryResult.json();
+			console.log(queryJson);
 			
-			const res = await fetch(link);
-			const foundClassroom = await res.json();
-			
-			setClassroom(foundClassroom);
-			alert(foundClassroom['department'] + " " + foundClassroom['number'] + "\n" + foundClassroom['class_code']);
+			setClassroom(queryJson);
+			alert(queryJson[0]['department'] + " " + queryJson[0]['number'] + "\n" + 
+				  queryJson[0]['name'] + "\n" + queryJson[0]['professor']);
 
 		} catch (e) {
 			console.log("Exception!", e);
