@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, TextInput, Text } from 'react-native';
 
 
 const StudentInfo = (props) => {
 
+    const [id, setId] = useState('000000000');
 
     return(
-
         <View style={styles.container}>
             <Text style={styles.text}>First Name:</Text>
             <TextInput style={styles.input} 
@@ -24,7 +24,8 @@ const StudentInfo = (props) => {
             <TextInput style={styles.input} 
                        placeholderTextColor='#ffcc33'
                        maxLength = {9} 
-                       placeholder= 'First Name'>
+                       placeholder= 'Student ID'
+                       onChangeText={value => props.onIdChange(value)}>
                        </TextInput>          
         </View>
     );

@@ -1,20 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, TextInput, Text } from 'react-native';
 
 
 const CodeInput = (props) => {
 
+    const [text, setText] = useState('');
 
     return(
-
-        // TODO force to be all caps
         <View style={styles.container}>
             <Text style={styles.text}>Enter class code:</Text>
             <TextInput style={styles.input} 
                        maxLength={6} 
                        placeholderTextColor='#ffcc33' 
                        placeholder='000000'
-                       onChangeText={text => props.onChange(text)}></TextInput>
+                       value={text}
+                       onChangeText={value => {
+                           setText(value.toUpperCase());
+                           props.onChange(value);
+                       }}></TextInput>
         </View>
     );
 }
