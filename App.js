@@ -4,6 +4,7 @@ import Header from './components/Header';
 import CodeInput from './components/CodeInput';
 import PresentButton from './components/PresentButton';
 import LocationButton from './components/LocationButton';
+import StudentInfo from './components/StudentInfo';
 
 const App = () => {
 
@@ -11,7 +12,7 @@ const App = () => {
 	const [classroom, setClassroom] = useState(null);
 
 	const onCodeInputChange = (value) => {
-		setCode(value);
+		setCode(value.toUpperCase());
 	}
 
 	async function getClassroomFromCode() {
@@ -49,6 +50,8 @@ const App = () => {
 			<SafeAreaView style={styles.bottom}>
 				<Header text="Bee Here" />
 				<CodeInput onChange={(value) => onCodeInputChange(value)}/>
+				<View style={{height: '100%', flex: 1}}/>
+				<StudentInfo style = {{height: '100%', flex: 1}}/>
 				<View style={{height: '100%', flex: 1}}/>
 				<LocationButton />
 				<View style={{height: '100%', flex: 1}}/>
