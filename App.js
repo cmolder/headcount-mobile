@@ -11,12 +11,6 @@ const App = () => {
 	const [classCode, setClassCode] = useState('');
 	const [studentId, setStudentId] = useState('');
 
-	useEffect(() => {
-		console.log("code", classCode);
-		console.log("id", studentId);
-	})
-
-
 	async function createAttendanceTransaction() {
 
 		try {
@@ -28,29 +22,33 @@ const App = () => {
 			const classResult = await fetch(classRef);
 			const classJson = await classResult.json();
 
-			const studentServerId = studentJson[0]['id']; // Django ID for student
-			const classroomServerId = classJson[0]['id']; // Django ID for classroom
-
-			const response = fetch("https://headcount-server.herokuapp.com/api/attendance",
+			const attendanceResult = await fetch("https://headcount-server.herokuapp.com/api/attendance",
 				{
 					method: 'POST',
 					body: JSON.stringify({
-						'student': studentServerId,
-						'classroom': classroomServerId
+						'student': studentJson[0]['id'], // Django ID for student
+						'classroom': classJson[0]['id']  // Django ID for classroom
 					}),
 					headers: {
 						'Content-Type': 'application/json'
 					}
 				}
 			);
-
-			console.log("Response!", response);
-
-			Alert.alert("Success", "You are now marked present in class " + classJson[0]['name']);
-
+			const attendanceJson = await attendanceResult.json();
+			
+			if(attendanceJson.hasOwnProperty('non_field_errors')) {
+				const errorMsg = attendanceJson['non_field_errors'][0];
+				if (errorMsg.includes("roster"))
+					Alert.alert("Error", "You are not on the roster for this class. Is your student ID correct?");
+				else
+					Alert.alert("Error", "There was an error while trying to mark you present.");
+			}
+			else {
+				Alert.alert("Success", "You are now marked present in class " + classJson[0]['name']);
+			}
 		} catch(e) {
 			console.log("Exception!", e);
-			Alert.alert("Error", "You have not been marked present. Is the class code correct?")
+			Alert.alert("Error", "There was an error while trying to mark you present.");
 		}
 	}
 
