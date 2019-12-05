@@ -10,6 +10,7 @@ const CodeInput = (props) => {
         <View style={styles.container}>
             <Text style={styles.text}>Enter class code:</Text>
             <TextInput style={styles.input} 
+                       autoCapitalize={true}
                        maxLength={6} 
                        placeholderTextColor='#ffcc33' 
                        placeholder='000000'
