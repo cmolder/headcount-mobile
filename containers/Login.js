@@ -6,6 +6,8 @@ import { useDispatch } from 'react-redux';
 import { setToken, clearToken } from '../redux/actions/token';
 import { setView, CODE_ENTRY } from '../redux/actions/view';
 
+import { AUTH_URL } from '../globals';
+
 // Components
 import LoginInput from '../components/Login/LoginInput';
 
@@ -13,8 +15,8 @@ const Login = () => {
 
 	const dispatch = useDispatch();
 
-	async function handleLogin(username, password) {
-		const authResult = await fetch("https://headcount-server.herokuapp.com/auth/",
+	const handleLogin = async (username, password) => {
+		const authResult = await fetch(AUTH_URL,
         {
             method: 'POST',
             body: JSON.stringify({

@@ -16,14 +16,14 @@ const PresentButton = (props) => {
 const styles = StyleSheet.create({
     button: {
         flex: 0,
-
-        margin: 10,
+        width: '90%',
         height: 60,
 
-        borderRadius: 10,
-        backgroundColor: '#ffcc33',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        backgroundColor: '#ffcc33',
+
+        borderRadius: 10,
     },
     text: {
         color: '#000000',

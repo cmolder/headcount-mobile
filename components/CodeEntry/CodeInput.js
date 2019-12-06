@@ -10,7 +10,7 @@ const CodeInput = (props) => {
         <View style={styles.container}>
             <Text style={styles.text}>Enter class code:</Text>
             <TextInput style={styles.input} 
-                       autoCapitalize={true}
+                       autoCapitalize={'characters'}
                        maxLength={6} 
                        placeholderTextColor='#ffcc33' 
                        placeholder='000000'
@@ -25,23 +25,30 @@ const CodeInput = (props) => {
 
 const styles = StyleSheet.create({
     container: {
+        width: '90%',
         paddingTop: 10,
+
         alignItems: 'center',
     },
     text: {
-        color: '#ffcc33',
         fontSize: 24,
-        fontWeight: '900'
+        fontWeight: '600',
+        color: '#ffcc33'
     }, 
     input: {
-        color: '#ffcc33',
-        fontSize: 40,
-        textAlign: 'center',
+        height: 80,
         marginTop: 10,
         width: '60%',
-        height: 80,
+
+        fontSize: 40,
+        color: '#ffcc33',
+        textAlign: 'center',
+        fontFamily: 'Menlo', // TODO does this work on Android?
+        letterSpacing: 10,
+        
+        
         borderWidth: 2,
-        borderRadius: 8,
+        borderRadius: 15,
         borderColor: '#ffcc33'
     }
 });
