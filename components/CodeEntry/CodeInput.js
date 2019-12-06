@@ -11,6 +11,7 @@ const CodeInput = (props) => {
             <Text style={styles.text}>Enter class code:</Text>
             <TextInput style={styles.input} 
                        autoCapitalize={'characters'}
+                       autoCorrect={false}
                        maxLength={6} 
                        placeholderTextColor='#ffcc33' 
                        placeholder='000000'
@@ -31,20 +32,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     text: {
-        fontSize: 24,
+        fontSize: 18,
         fontWeight: '600',
         color: '#ffcc33'
     }, 
     input: {
         height: 80,
         marginTop: 10,
-        width: '60%',
+        width: '75%',
 
         fontSize: 40,
         color: '#ffcc33',
         textAlign: 'center',
         fontFamily: 'Menlo', // TODO does this work on Android?
-        letterSpacing: 10,
+        letterSpacing: 5,
         
         
         borderWidth: 2,

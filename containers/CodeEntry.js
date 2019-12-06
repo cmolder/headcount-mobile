@@ -97,27 +97,33 @@ const CodeEntry = () => {
 		// console.log("Attedance transaction POST result:");
 		// console.log(queryObj);
 
-		if ('detail' in queryObj) {
-			Alert.alert('Error', queryObj['detail'])			// Authentication error
-		} else if ('non_field_errors' in queryObj) {
-			Alert.alert('Error', queryObj['non_field_errors'])	// Validaton error
-		} else {
-			Alert.alert('Success', 'You have been marked present in this class.');
-		}
+		if ('detail' in queryObj) {					 // Authentication error
+			const message = JSON.stringify(queryObj['detail']);
+			Alert.alert('Error', message)			
+		} 
+		else if ('non_field_errors' in queryObj) {   // Validation errors
+			const message = JSON.stringify(queryObj['non_field_errors']);
+
+			if (message.includes('unique'))		 // Unique session / student pair constraint violated
+				Alert.alert('Error', 'You have already marked yourself present.');  
+			else if (message.includes('roster')) // Student on roster constraint violated
+				Alert.alert('Error', 'You are not on the roster for this class.');  
+			else Alert.alert('Error', message);  // Other error
+		} 
+		else Alert.alert('Success', 'You have been marked present in this class.'); // Success
 	}
 
-	const handlePresentPress = async () => {
+
+	const markPresent = async () => {
 		sessionId = await fetchClassroomSessionId(code);
-
-		console.log("studentId: ", typeof(student.id));
-		console.log("sessionId: ", typeof(sessionId));
-
-		console.log("studentId: ", student.id);
-		console.log("sessionId: ", sessionId);
 
 		if(sessionId !== null)
 			postAttendanceTransaction(sessionId, student.id);
+	}
 
+	const logout = () => {
+		dispatch(setView(LOGIN));
+		dispatch(setToken(''));
 	}
 
     if(student === null)
@@ -135,17 +141,20 @@ const CodeEntry = () => {
 			<SafeAreaView style={styles.bottom}>
 				<Header text="Bee Here" />
 
-                <Text style={styles.greetingText}>
-                    Hello{(student === null) ? '.' : ', ' + student.name}
-                </Text>
+				<View style={styles.container}>
+					<Text style={styles.greetingText}>
+						Hello{(student === null) ? '.' : ', ' + student.name}
+					</Text>
+				</View>
 
-				<View style={{height:'100%', flex:1}}/>
+				<View style={styles.container}>
+					<CodeInput onChange={value => setCode(value)}/>
+				</View>
 
-				<CodeInput onChange={value => setCode(value)}/>
+				<View style={styles.container}/>
 
-				<View style={{height:'100%', flex:1}}/>
+				<PresentButton onPress={() => markPresent()}/>
 
-				<PresentButton onPress={() => handlePresentPress()}/>
 			</SafeAreaView>
         </>
     )
@@ -167,6 +176,15 @@ const styles = StyleSheet.create({
 	  backgroundColor: '#171717'
 	},
 
+	container: {
+		width: '100%',
+		flex: 1,
+		height: '100%',
+
+		alignItems: 'center',
+	 	justifyContent: 'center',
+	},
+
 	greetingText: {
 		flex: 0,
 		paddingBottom: 50,
@@ -174,7 +192,7 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		
 		color: "#ffcc33",
-		fontSize: 40,
+		fontSize: 30,
 		fontWeight: '800',
 	}
 });

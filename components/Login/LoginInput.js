@@ -50,16 +50,16 @@ const styles = StyleSheet.create({
     },
 
     inputTitle: {
-        flex: 1,
+        flex: 2,
 
         color: '#ffcc33',
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: '600',
         fontFamily: 'Arial',
     },
     
     inputField: {
-        flex: 2,
+        flex: 3,
 
         height: 40,
         marginTop: 10,
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     button: {
         flex: 0,
 
-        margin: 10,
+        marginTop: 30,
         height: 50,
         width: '90%',
 
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
 
     buttonText: {
         color: '#000000',
-        fontSize: 28,
+        fontSize: 24,
         fontWeight: '800'
     }
 });

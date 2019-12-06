@@ -5,7 +5,7 @@ const PresentButton = (props) => {
     return(
         <View style={styles.button}>
             <TouchableOpacity onPress={() => props.onPress()}>      
-                <Text style={styles.text}>Mark as present</Text>
+                <Text style={styles.text}>Mark present</Text>
             </TouchableOpacity>            
 	    </View>
  
@@ -16,19 +16,19 @@ const PresentButton = (props) => {
 const styles = StyleSheet.create({
     button: {
         flex: 0,
+        
+        height: 50,
         width: '90%',
-        height: 60,
-
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#ffcc33',
 
         borderRadius: 10,
+        backgroundColor: '#ffcc33',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     text: {
         color: '#000000',
-        fontSize: 28,
-        fontWeight: '900'
+        fontSize: 24,
+        fontWeight: '800'
     }
 });
 
