@@ -55,7 +55,6 @@ const styles = StyleSheet.create({
         color: '#ffcc33',
         fontSize: 18,
         fontWeight: '600',
-        fontFamily: 'Arial',
     },
     
     inputField: {
@@ -67,7 +66,6 @@ const styles = StyleSheet.create({
 
         color: '#ffcc33',
         fontSize: 18,
-        fontFamily: 'Arial',
         
         textAlign: 'left',
         paddingLeft: 10,

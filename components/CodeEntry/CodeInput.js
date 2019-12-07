@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, Text } from 'react-native';
+import { Platform, StyleSheet, View, TextInput, Text } from 'react-native';
 
 
 const CodeInput = (props) => {
@@ -42,15 +42,14 @@ const styles = StyleSheet.create({
         width: '75%',
 
         fontSize: 40,
+        fontFamily: (Platform.OS === 'android') ? 'monospace' : 'Menlo',
         color: '#ffcc33',
         textAlign: 'center',
-        fontFamily: 'Menlo', // TODO does this work on Android?
         letterSpacing: 5,
-        
         
         borderWidth: 2,
         borderRadius: 15,
-        borderColor: '#ffcc33'
+        borderColor: '#ffcc33',
     }
 });
 
